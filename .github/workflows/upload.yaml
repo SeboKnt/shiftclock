@@ -21,7 +21,7 @@ jobs:
           password: ${{ secrets.SFTP_PASSWORD }}
           port: 22
           uploads: |
-            ./ => /home/youngau/public_html/
+            ./ => public_html/
           ignore: |
             *.git
             */**/*git*
