@@ -6,15 +6,9 @@ $today = new DateTimeImmutable('today');
 $yearStart = new DateTimeImmutable($today->format('Y-01-01'));
 $yearEnd = new DateTimeImmutable($today->format('Y-12-31'));
 
-// External daily hours map (date => float) or placeholder
-if (!isset($daily_hours_year) || !is_array($daily_hours_year)) {
-    $daily_hours_year = [];
-    $cursor = $yearStart;
-    while ($cursor <= $yearEnd) {
-        $key = $cursor->format('Y-m-d');
-        $daily_hours_year[$key] = round((random_int(0, 10) + random_int(0, 6)), 1); // approx 0..16h
-        $cursor = $cursor->modify('+1 day');
-    }
+// Default null until PostgreSQL is configured
+if (!isset($daily_hours_year) || $daily_hours_year === null) {
+    $daily_hours_year = null;
 }
 
 // Build months with detailed stats

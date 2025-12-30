@@ -1,13 +1,9 @@
 <?php
 require __DIR__ . '/components/common.php';
 
-// Placeholder recent daily hours map (date => float)
+// Default null until PostgreSQL is configured
 $today = new DateTimeImmutable('today');
-$daily_hours = [];
-for ($i = 0; $i < 60; $i++) {
-    $date = $today->modify('-' . $i . ' days');
-    $daily_hours[$date->format('Y-m-d')] = round((random_int(0, 10) + random_int(0, 6)), 1); // 0..16h approx
-}
+$daily_hours = null;
 
 // Today's hours
 $todayKey = $today->format('Y-m-d');

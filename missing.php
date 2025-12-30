@@ -1,9 +1,9 @@
 <?php
 require __DIR__ . '/components/common.php';
 
-// Placeholder data: connect to your DB later
-$total_seconds = 3_456_789; // example
-$total_hours = round($total_seconds / 3600, 1);
+// Default 0 until PostgreSQL is configured
+$total_seconds = 0;
+$total_hours = 0;
 
 renderPage('Accumulated', function () use ($total_hours) {
 ?>

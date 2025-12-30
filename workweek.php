@@ -7,15 +7,9 @@ $focusDate = isset($_GET['date']) ? new DateTimeImmutable($_GET['date']) : new D
 $dow = (int)$focusDate->format('N'); // 1..7 (Mon..Sun)
 $weekStart = $focusDate->modify('-' . ($dow - 1) . ' days');
 
-// Placeholder daily hours for the week (Mo..So) – replace with DB values
-$daily = [];
+// Default null until PostgreSQL is configured
+$daily = null;
 $weekly_hours = 0;
-for ($i = 0; $i < 7; $i++) {
-    $day = $weekStart->modify("+{$i} days");
-    $h = [5,6,7,8,9,10,11][array_rand([5,6,7,8,9,10,11])];
-    $daily[$day->format('Y-m-d')] = $h;
-    $weekly_hours += $h;
-}
 // Progress against 40h and overtime
 $benchmark = 40;
 $completed = min($benchmark, $weekly_hours);
